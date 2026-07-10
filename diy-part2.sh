@@ -21,3 +21,8 @@ sed -i 's/LEDE/OneCloud/g' package/base-files/files/bin/config_generate
 
 # 替换终端为bash
 sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd
+
+# ❗ 修复 default-settings 冲突（通用）
+rm -rf package/lean/default-settings
+rm -rf package/emortal/default-settings 2>/dev/null
+

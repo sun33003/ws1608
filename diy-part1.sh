@@ -19,3 +19,5 @@ sed -i '2i src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-pas
 
 #sed -i '2s/^#//' feeds.conf.default
 #sed -i '3s/^/#/' feeds.conf.default
+
+echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"   # 

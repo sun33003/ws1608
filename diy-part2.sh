@@ -26,3 +26,79 @@ sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd
 # rm -rf package/lean/default-settings
 # rm -rf package/emortal/default-settings 2>/dev/null
 
+#!/bin/bash
+
+echo "======================================"
+echo " Fix Amlogic OneCloud S805 Build"
+echo " Remove S905D DTS Patch Conflict"
+echo "======================================"
+
+
+# 当前源码目录
+cd $GITHUB_WORKSPACE/openwrt 2>/dev/null || cd /workdir/openwrt
+
+
+echo "Current path:"
+pwd
+
+
+# =====================================
+# 删除 S905D 错误补丁
+# =====================================
+
+PATCH_FILE="target/linux/amlogic/patches-6.6/001-dts-s905d-fix-high-load.patch"
+
+
+if [ -f "$PATCH_FILE" ]; then
+
+    echo "Remove incompatible S905D patch..."
+
+    rm -f "$PATCH_FILE"
+
+else
+
+    echo "S905D patch not found, skip."
+
+fi
+
+
+
+# =====================================
+# 删除失败残留
+# =====================================
+
+echo "Cleaning reject files..."
+
+find target/linux/amlogic -name "*.rej" -delete
+
+
+# =====================================
+# 确认 OneCloud DTS
+# =====================================
+
+echo "Checking OneCloud DTS..."
+
+find target/linux/amlogic -name "*onecloud*"
+
+
+
+# =====================================
+# 禁止无关 S905D设备
+# =====================================
+
+echo "Disable S905D related patches..."
+
+find target/linux/amlogic/patches-6.6 \
+-name "*s905*" \
+-not -name "*onecloud*" \
+-exec rm -f {} \;
+
+
+# =====================================
+# 修复设备名称
+# =====================================
+
+echo "Amlogic S805 patch cleanup finished."
+
+
+exit 0

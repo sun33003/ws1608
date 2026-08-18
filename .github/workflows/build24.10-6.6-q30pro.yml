@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: Build immortalwrt24.10-6.6 JCG Q30Pro Latest Passwall+Sing-box
+name: Build immortalwrt24.10-5.4 JCG Q30Pro Latest Passwall
 
 on:
   repository_dispatch:

@@ -22,7 +22,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 2410-5.4-q30pro-passwall.config
   DIY_P1_SH: diy-part10.sh
-  DIY_P2_SH: 2410-5.4-diy-part2-6-1-pw.sh
+  DIY_P2_SH: diy-part2-6-1-pw.sh
   RELEASE_FILE: 2410-5.4-pw-release.txt 
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
